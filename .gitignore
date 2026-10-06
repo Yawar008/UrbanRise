@@ -1,0 +1,17 @@
+# .NET
+**/bin/
+**/obj/
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# VS Code
+.vscode/*.log
+
+# Local settings / secrets
+*.user
+*.suo
+.env
+.env.*
+!.env.example

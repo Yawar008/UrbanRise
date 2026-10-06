@@ -1,0 +1,34 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Backend (.NET)",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "${workspaceFolder}/backend/bin/Debug/net10.0/backend.dll",
+            "cwd": "${workspaceFolder}/backend",
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "preLaunchTask": "backend:build"
+        },
+        {
+            "name": "Frontend (Vite + Chrome)",
+            "type": "pwa-chrome",
+            "request": "launch",
+            "url": "http://localhost:5173",
+            "webRoot": "${workspaceFolder}/frontend",
+            "preLaunchTask": "frontend:dev"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Full Stack (F5)",
+            "configurations": [
+                "Backend (.NET)",
+                "Frontend (Vite + Chrome)"
+            ],
+            "stopAll": true
+        }
+    ]
+}

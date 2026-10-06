@@ -1,0 +1,25 @@
+visit_id,lead_id,customer_name,phone,project,config,visit_at,executive,outcome,next_action
+V-3000,L-88079,Naveen Subramanian,9659693900,Skyline-Bengaluru,3BHK-Premium,2026-10-06 13:00,EX-03 Joseph,Not interested,Send price sheet
+V-3001,L-89117,Ravi Rao,9162146918,Greenway-Hyderabad,2BHK,2026-10-08 19:00,EX-02 Farhan,Interested,
+V-3002,L-80630,Arun Kumar,9695328739,Oceanic-Chennai,3BHK,2026-10-06 12:00,EX-02 Farhan,,Send price sheet
+V-3003,L-82104,Priya Rao,9138957070,Oceanic-Chennai,2BHK,2026-10-08 15:00,EX-03 Joseph,Needs time,Call on Monday
+V-3004,L-88660,Divya Raman,9738851195,Greenway-Hyderabad,3BHK,2026-10-07 11:00,EX-01 Meenakshi,,
+V-3005,L-83518,Anitha Nair,9853142821,Greenway-Hyderabad,3BHK-Premium,2026-10-07 17:30,EX-02 Farhan,,
+V-3006,L-85453,Suresh Reddy,9876891703,Skyline-Bengaluru,3BHK-Premium,2026-10-06 11:00,EX-01 Meenakshi,No show,Send price sheet
+V-3007,L-81243,Arun Murthy,9229154947,Greenway-Hyderabad,2BHK,2026-10-06 17:00,EX-02 Farhan,Interested,Second visit with wife
+V-3008,L-88627,Sowmya Subramanian,9784318958,Greenway-Hyderabad,3BHK,2026-10-07 10:00,EX-01 Meenakshi,Not interested,
+V-3009,L-86083,Ravi Iyer,9601987494,Oceanic-Chennai,3BHK-Premium,2026-10-08 12:30,EX-01 Meenakshi,Interested,
+V-3010,L-82032,Naveen Iyer,9923084657,Skyline-Bengaluru,2BHK,2026-10-08 17:00,EX-03 Joseph,Needs time,Call on Monday
+V-3011,L-87714,Lakshmi Rao,9368971071,Oceanic-Chennai,3BHK-Premium,2026-10-06 15:30,EX-01 Meenakshi,,Call on Monday
+V-3012,L-81533,Kavitha Reddy,9918491022,Greenway-Hyderabad,3BHK-Premium,2026-10-06 18:00,EX-02 Farhan,,Call on Monday
+V-3013,L-81951,Anitha Rao,9664302728,Oceanic-Chennai,3BHK-Premium,2026-10-08 11:30,EX-02 Farhan,Not interested,Second visit with wife
+V-3014,L-89615,Divya Raman,9815139799,Skyline-Bengaluru,2BHK,2026-10-08 17:00,EX-02 Farhan,Not interested,Second visit with wife
+V-3015,L-82667,Arun Reddy,9971847284,Oceanic-Chennai,3BHK,2026-10-07 10:00,EX-03 Joseph,,
+V-3016,L-83496,Anitha Iyer,9024780161,Skyline-Bengaluru,3BHK,2026-10-08 12:30,EX-03 Joseph,Needs time,Send price sheet
+V-3017,L-86846,Naveen Murthy,9837609667,Skyline-Bengaluru,3BHK,2026-10-06 10:30,EX-02 Farhan,,
+V-3018,L-83602,Prakash Rao,9548092312,Skyline-Bengaluru,3BHK,2026-10-08 10:30,EX-01 Meenakshi,Needs time,
+V-3019,L-84831,Lakshmi Subramanian,9658901121,Oceanic-Chennai,2BHK,2026-10-06 17:30,EX-01 Meenakshi,Interested,
+V-3020,L-87635,Vikram Pillai,9097092772,Greenway-Hyderabad,3BHK-Premium,2026-10-07 12:00,EX-02 Farhan,No show,
+V-3021,L-86889,Divya Iyer,9461132543,Oceanic-Chennai,3BHK-Premium,2026-10-08 13:00,EX-03 Joseph,,
+V-3022,L-82289,Lakshmi Krishnan,9580978290,Skyline-Bengaluru,3BHK,2026-10-08 17:00,EX-02 Farhan,No show,
+V-3023,L-82951,Lakshmi Kumar,9264811828,Greenway-Hyderabad,3BHK-Premium,2026-10-07 16:30,EX-02 Farhan,Needs time,Second visit with wife
