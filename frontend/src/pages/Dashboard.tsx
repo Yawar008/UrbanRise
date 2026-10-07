@@ -178,9 +178,25 @@ export default function Dashboard() {
       <header className="page-header">
         <div>
           <h1>Visits Dashboard</h1>
-          <p>Select an executive and optionally filter visits by date.</p>
         </div>
       </header>
+
+      <section
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "end",
+          marginBottom: "10px",
+        }}
+      >
+        <button
+          type="button"
+          onClick={handleDownloadCsv}
+          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+        >
+          Download Latest CSV
+        </button>
+      </section>
 
       <section className="filters">
         <label>
@@ -211,31 +227,16 @@ export default function Dashboard() {
               disabled={!selectedExecutive}
             />
             {selectedDate && (
-              <p
+              <button
                 onClick={() => setSelectedDate("")}
                 title="Clear date"
-                // style={{ marginLeft: "8px" }}
+                style={{ marginLeft: "8px" }}
               >
                 Clear Date
-              </p>
+              </button>
             )}
           </div>
         </label>
-        <section
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "end",
-          }}
-        >
-          <button
-            type="button"
-            onClick={handleDownloadCsv}
-            className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
-          >
-            Download Latest CSV
-          </button>
-        </section>
       </section>
 
       {error && <p className="error">Backend connection failed: {error}</p>}
