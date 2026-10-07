@@ -42,7 +42,11 @@ export default function Dashboard() {
 
       try {
         const response = await fetch("/api/visits/executives");
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
         setExecutives(await response.json());
       } catch (err) {
         setError(
@@ -66,11 +70,20 @@ export default function Dashboard() {
     setError("");
 
     try {
-      const params = new URLSearchParams({ executive: selectedExecutive });
-      if (selectedDate) params.set("date", selectedDate);
+      const params = new URLSearchParams({
+        executive: selectedExecutive,
+      });
+
+      if (selectedDate) {
+        params.set("date", selectedDate);
+      }
 
       const response = await fetch(`/api/visits?${params.toString()}`);
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
       setVisits(await response.json());
     } catch (err) {
       setError(
@@ -93,13 +106,18 @@ export default function Dashboard() {
   };
 
   const closeEditModal = () => {
-    if (isSaving) return;
+    if (isSaving) {
+      return;
+    }
+
     setEditingVisit(null);
     setEditError("");
   };
 
   const saveVisit = async () => {
-    if (!editingVisit) return;
+    if (!editingVisit) {
+      return;
+    }
 
     if (!OUTCOME_OPTIONS.includes(editOutcome)) {
       setEditError("Please select a valid outcome.");
@@ -125,7 +143,9 @@ export default function Dashboard() {
         `/api/visits/${encodeURIComponent(editingVisit.visitId)}`,
         {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify(payload),
         },
       );
@@ -156,7 +176,6 @@ export default function Dashboard() {
       }
 
       const blob = await response.blob();
-
       const url = window.URL.createObjectURL(blob);
 
       const link = document.createElement("a");
@@ -176,23 +195,14 @@ export default function Dashboard() {
   return (
     <main className="dashboard">
       <header className="page-header">
-        <div>
-          <h1>Visits Dashboard</h1>
-        </div>
+        <h1>Visits Dashboard</h1>
       </header>
 
-      <section
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "end",
-          marginBottom: "10px",
-        }}
-      >
+      <section className="download-section">
         <button
           type="button"
           onClick={handleDownloadCsv}
-          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          className="download-button"
         >
           Download Latest CSV
         </button>
@@ -209,6 +219,7 @@ export default function Dashboard() {
             }}
           >
             <option value="">Select an executive</option>
+
             {executives.map((executive) => (
               <option key={executive} value={executive}>
                 {executive}
@@ -219,18 +230,20 @@ export default function Dashboard() {
 
         <label>
           Visit date
-          <div>
+          <div className="date-filter">
             <input
               type="date"
               value={selectedDate}
               onChange={(event) => setSelectedDate(event.target.value)}
               disabled={!selectedExecutive}
             />
+
             {selectedDate && (
               <button
+                type="button"
+                className="clear-date-button"
                 onClick={() => setSelectedDate("")}
                 title="Clear date"
-                style={{ marginLeft: "8px" }}
               >
                 Clear Date
               </button>
@@ -274,10 +287,11 @@ export default function Dashboard() {
                   <th>Executive</th>
                   <th>Outcome</th>
                   <th>Next Action</th>
-                  <th>Ai Brief</th>
-                  <th>Action</th>
+                  <th>AI Brief</th>
+                  <th className="action-cell">Action</th>
                 </tr>
               </thead>
+
               <tbody>
                 {visits.map((visit) => (
                   <tr key={visit.visitId}>
@@ -291,7 +305,8 @@ export default function Dashboard() {
                     <td>{visit.executive}</td>
                     <td>{visit.outcome}</td>
                     <td>{visit.nextAction}</td>
-                    <td>{visit.aiBrief}</td>
+                    <td className="ai-brief-cell">{visit.aiBrief}</td>
+
                     <td className="action-cell">
                       <button
                         type="button"
@@ -322,6 +337,7 @@ export default function Dashboard() {
           >
             <div className="modal-header">
               <h2 id="edit-visit-title">Edit Visit</h2>
+
               <button
                 type="button"
                 className="modal-close"
@@ -346,6 +362,7 @@ export default function Dashboard() {
                   onChange={(event) => setEditOutcome(event.target.value)}
                 >
                   <option value="">Select outcome</option>
+
                   {OUTCOME_OPTIONS.map((outcome) => (
                     <option key={outcome} value={outcome}>
                       {outcome}
@@ -361,6 +378,7 @@ export default function Dashboard() {
                   onChange={(event) => setEditNextAction(event.target.value)}
                 >
                   <option value="">Select next action</option>
+
                   {NEXT_ACTION_OPTIONS.map((nextAction) => (
                     <option key={nextAction} value={nextAction}>
                       {nextAction}
@@ -381,6 +399,7 @@ export default function Dashboard() {
               >
                 Cancel
               </button>
+
               <button
                 type="button"
                 className="primary-button"
