@@ -274,6 +274,7 @@ export default function Dashboard() {
                   <th>Executive</th>
                   <th>Outcome</th>
                   <th>Next Action</th>
+                  <th>Ai Brief</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -290,6 +291,7 @@ export default function Dashboard() {
                     <td>{visit.executive}</td>
                     <td>{visit.outcome}</td>
                     <td>{visit.nextAction}</td>
+                    <td>{visit.aiBrief}</td>
                     <td className="action-cell">
                       <button
                         type="button"

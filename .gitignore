@@ -15,3 +15,6 @@ frontend/dist/
 .env
 .env.*
 !.env.example
+
+# Test results
+**/TestResults/

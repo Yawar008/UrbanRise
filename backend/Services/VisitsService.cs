@@ -46,9 +46,28 @@ public sealed class VisitsService(AppDbContext context) : IVisitsService
             query = query.Where(visit => visit.VisitAt >= start && visit.VisitAt < end);
         }
 
-        return await query
-            .OrderBy(visit => visit.VisitAt)
-            .ToListAsync();
+        var visits = await query
+        .OrderBy(visit => visit.VisitAt)
+        .ToListAsync();
+
+        foreach (var visit in visits)
+        {
+            if (!string.IsNullOrEmpty(visit.Phone) && visit.Phone.Length > 4)
+            {
+                visit.Phone = new string(
+                    '*',
+                    visit.Phone.Length - 4) + visit.Phone[^4..];
+            }
+            visit.AiBrief = GenerateBrief(visit);
+        }
+
+        return visits;
+    }
+    public string GenerateBrief(Visit visit)
+    {
+        return $"{visit.CustomerName} showed {visit.Outcome.ToLower()} " +
+               $"interest in {visit.Project}. " +
+               $"Next action: {visit.NextAction}.";
     }
 
     public async Task<IReadOnlyList<string>> GetExecutivesAsync()

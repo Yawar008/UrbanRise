@@ -14,6 +14,7 @@ public class Visit
     public string Executive { get; set; } = string.Empty;
     public string Outcome { get; set; } = string.Empty;
     public string NextAction { get; set; } = string.Empty;
+    public string AiBrief { get; set; } = string.Empty;
 }
 
 public class VisitCsvModel

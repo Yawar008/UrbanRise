@@ -49,12 +49,16 @@ DotNetReactVisitsInMemory/
 │   ├── package.json
 │   └── vite.config.ts
 │
+├── Backend.Tests/
+│   ├── Backend.Tests.csproj
+│   └── VisitsServiceTests.cs
 ├── .vscode/
 │   ├── launch.json
 │   └── tasks.json
 │
 ├── .gitignore
-└── README.md
+├── README.md
+└── run.ps1
 ```
 
 ## Frontend structure
@@ -145,16 +149,8 @@ Example:
 
 ```json
 {
-  "visitId": 1,
-  "leadId": 1001,
-  "customerName": "Aarav Sharma",
-  "phone": "9876543210",
-  "project": "Green Valley",
-  "config": "3 BHK",
-  "visitAt": "2026-10-07T10:00:00",
-  "executive": "Rahul Mehta",
   "outcome": "Interested",
-  "nextAction": "Follow-up call"
+  "nextAction": "Send price sheet"
 }
 ```
 
@@ -242,3 +238,53 @@ Allowed next actions:
 - Call on Friday
 - Call on Saturday
 - Call on Sunday
+
+
+## Phone number masking
+
+The dashboard visits endpoint masks phone numbers before returning them from the backend. Only the last four digits are exposed.
+
+For example:
+
+```text
+9876543210 → ******3210
+```
+
+The masking is applied to the API result and does not modify the underlying in-memory database value. The CSV download continues to export the current in-memory data.
+
+## Automated backend test
+
+The `Backend.Tests` project contains an xUnit test for `VisitsService.GetVisitsAsync()`.
+
+The test uses a separate EF Core InMemory database and verifies that:
+
+- the executive filter is applied;
+- the date filter is applied;
+- the expected visit is returned;
+- phone-number masking is applied.
+
+Run the backend tests with:
+
+```powershell
+dotnet test Backend.Tests/Backend.Tests.csproj
+```
+
+## One-command setup and run
+
+On Windows PowerShell, from the project root, run:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\run.ps1
+```
+
+`run.ps1` restores the backend/test dependencies, installs the frontend dependencies with `npm ci`, starts the ASP.NET Core backend, waits for it to become available on port `7043`, and then starts the React/Vite frontend.
+
+Press `Ctrl+C` to stop the frontend. The script also stops the backend process.
+
+## What I would test next
+
+1. **UpdateVisitAsync with valid data** — verifies that allowed outcome/next-action values are persisted correctly.
+2. **UpdateVisitAsync with invalid values** — verifies that invalid user input is rejected and the existing visit remains unchanged.
+3. **UpdateVisitAsync for a missing visit ID** — verifies the expected not-found behavior.
+4. **GenerateCsvAsync after an update** — verifies that the downloaded CSV contains the latest in-memory values and the correct headers.
+5. **GetVisitsAsync without filters and with boundary dates** — verifies unfiltered behavior and prevents date/time boundary regressions.
