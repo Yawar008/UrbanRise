@@ -1,6 +1,7 @@
 ﻿import { useState } from "react";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Loader from "../Helpers/Loader/Loader";
+import Dashboard from "../pages/Dashboard";
 
 const Router = () => {
   const location = useLocation();
@@ -14,7 +15,15 @@ const Router = () => {
     <div>
       {loader && <Loader />}
       <Routes>
-        <Route path="/dashboard" element={<></>} />
+        <Route
+          path="/"
+          element={<Navigate to="/dashboard" replace />}
+        />
+        <Route
+          path="/home"
+          element={<Navigate to="/dashboard" replace />}
+        />
+        <Route path="/dashboard" element={<Dashboard/>} />
       </Routes>
     </div>
   );
